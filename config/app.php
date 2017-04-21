@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Penyewaan Rumah Dinas',
+    'name' => 'Sistem Penyewaan Rumah Dinas',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Spatie\Tail\TailServiceProvider::class,
 
         /*
          * Application Service Providers...

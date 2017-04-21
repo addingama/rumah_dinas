@@ -33,6 +33,7 @@
         <!-- /#wrapper -->
 
         @include('partials.scripts')
+        @include('partials.notification')
     </body>
 
 </html>

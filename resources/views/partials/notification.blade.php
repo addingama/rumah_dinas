@@ -1,7 +1,7 @@
 @if (Session::has('success'))
-    <div id="alertbottomright" class="myadmin-alert alert-info myadmin-alert-bottom-right">
+    <div id="alertbottomright" class="myadmin-alert alert-success myadmin-alert-bottom-right">
         <a href="#" class="closed">&times;</a>
-        <h4>Error!</h4> {{ Session::get('success') }}.
+        <h4>Success!</h4> {{ Session::get('success') }}.
     </div>
 @endif
 
@@ -12,8 +12,15 @@
     </div>
 @endif
 
+@if (Session::has('info'))
+    <div id="alertbottomright" class="myadmin-alert alert-info myadmin-alert-bottom-right">
+        <a href="#" class="closed">&times;</a>
+        <h4>Info!</h4> {{ Session::get('info') }}.
+    </div>
+@endif
 
-@if (Session::has('success') || Session::has('error'))
+
+@if (Session::has('success') || Session::has('error') || Session::has('info'))
     <script>
         //Alerts
         $(".myadmin-alert .closed").click(function (event) {

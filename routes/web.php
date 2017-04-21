@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::get('login', 'SessionsController@login')->name('login');
 Route::post('login', 'SessionsController@doLogin');
 
-Route::group(['middleware' => ['auth']], function() {
-   Route::get('dashboard', 'DashboardController@index');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('logout', 'SessionsController@logout');
+    Route::get('dashboard', 'DashboardController@index');
 });

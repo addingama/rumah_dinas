@@ -22,7 +22,7 @@
                 <div class="container-fluid">
                     @yield('content')
                     <!-- .right-sidebar -->
-                    @include('partials.right_navbar')
+                    {{--@include('partials.right_navbar')--}}
                     <!-- /.right-sidebar -->
                 </div>
                 <!-- /.container-fluid -->

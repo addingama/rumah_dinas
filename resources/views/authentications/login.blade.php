@@ -1,7 +1,7 @@
 @extends('layouts.authentication')
 
 @section('content')
-    <form class="form-horizontal form-material" id="loginform" action="index.html">
+    {{ Form::open(['url' => 'login', 'id'=>'loginForm', 'class'=>'form-horizontal form-material']) }}
         <a href="javascript:void(0)" class="text-center db">
             <img src="/img/instansi-logo.png" style="height: 200px;" alt="Home">
             <br>
@@ -9,11 +9,11 @@
         </a>
         <div class="form-group m-t-40">
             <div class="col-xs-12">
-                <input class="form-control" type="text" required="" placeholder="Username"></div>
+                <input class="form-control" type="text" required="" placeholder="Email" name="email"></div>
         </div>
         <div class="form-group">
             <div class="col-xs-12">
-                <input class="form-control" type="password" required="" placeholder="Password"></div>
+                <input class="form-control" type="password" required="" placeholder="Password" name="password"></div>
         </div>
         <div class="form-group">
             <div class="col-md-12">
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-    </form>
+    {{ Form::close() }}
     <form class="form-horizontal" id="recoverform" action="index.html">
         <div class="form-group ">
             <div class="col-xs-12">

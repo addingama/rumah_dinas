@@ -12,10 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('blank');
+    if (!Auth::check()) {
+        return redirect('/login');
+    } else {
+        return redirect('/dashboard');
+    }
 });
 
 
-Route::get('/login', function() {
-    return view('authentications.login');
+Route::get('login', 'SessionsController@login')->name('login');
+Route::post('login', 'SessionsController@doLogin');
+
+Route::group(['middleware' => ['auth']], function() {
+   Route::get('dashboard', 'DashboardController@index');
 });

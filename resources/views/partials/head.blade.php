@@ -14,6 +14,8 @@
     <link href="/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
     <!-- This is Sidebar menu CSS -->
     <link href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- This is a Animation CSS -->
     <link href="/css/animate.css" rel="stylesheet">
     <!-- This is a Custom CSS -->

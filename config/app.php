@@ -169,6 +169,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Spatie\Tail\TailServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        HieuLe\Active\ActiveServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Active' => HieuLe\Active\Facades\Active::class,
 
     ],
 

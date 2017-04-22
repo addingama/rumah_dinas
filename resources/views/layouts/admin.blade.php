@@ -34,6 +34,7 @@
 
         @include('partials.scripts')
         @include('partials.notification')
+        @yield('additional_script')
     </body>
 
 </html>

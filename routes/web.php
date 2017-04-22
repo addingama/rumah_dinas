@@ -26,4 +26,9 @@ Route::post('login', 'SessionsController@doLogin');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('logout', 'SessionsController@logout');
     Route::get('dashboard', 'DashboardController@index');
+
+    Route::resource('rumah', 'RumahController');
+    Route::resource('tipe_rumah', 'TipeRumahController');
+    Route::resource('pegawai', 'PegawaiController');
+    Route::resource('pangkat', 'PangkatController');
 });

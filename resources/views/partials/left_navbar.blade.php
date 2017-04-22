@@ -19,21 +19,31 @@
                 </a>
             </li>
             <li class="nav-small-cap m-t-10">--- Main Menu</li>
-            <li>
+            <li class="{{ active_class(if_uri_pattern(['dashboard*']), 'active', '') }}">
                 <a href="{{ url('dashboard') }}" class="waves-effect">
                     <i class="fa-dashcube fa"></i>
                     <span class="hide-menu">Dashboard</span>
                 </a>
             </li>
-            <li>
+            <li class="{{ active_class(if_uri_pattern(['rumah*']), 'active', '') }}">
                 <a href="javascript:void(0)" class="waves-effect">
                     <i class="ti-files fa-fw"></i>
-                    <span class="hide-menu">Master Data<span class="fa arrow"></span>
-                    </span>
+                    <span class="hide-menu">Master Data<span class="fa arrow"></span></span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="{{ url('houses') }}">Rumah</a></li>
-                    <li><a href="javascript:void(0)">Lainnya</a></li>
+                    <li class="{{ active_class(if_uri_pattern(['rumah*']), 'active', '') }}">
+                        <a href="{{ url('pegawai') }}">Pegawai</a>
+                    </li>
+                    <li class="{{ active_class(if_uri_pattern(['rumah*']), 'active', '') }}">
+                        <a href="{{ url('pangkat') }}">Pangkat</a>
+                    </li>
+                    <li class="{{ active_class(if_uri_pattern(['rumah*', 'pegawai*', 'tipe_rumah*', 'pangkat*']), 'active', '') }}">
+                        <a href="{{ url('rumah') }}">Rumah</a>
+                    </li>
+                    <li class="{{ active_class(if_uri_pattern(['rumah*']), 'active', '') }}">
+                        <a href="{{ url('tipe_rumah') }}">Tipe Rumah</a>
+                    </li>
+
                 </ul>
             </li>
         </ul>

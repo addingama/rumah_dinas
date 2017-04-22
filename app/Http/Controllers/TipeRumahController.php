@@ -9,7 +9,7 @@ use Validator;
 use DB;
 use File;
 use Illuminate\Support\Facades\App;
-use Maatwebsite\Excel\Excel;
+
 
 
 class TipeRumahController extends Controller

@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', 'DashboardController@index');
 
     Route::resource('rumah', 'RumahController');
+    Route::post('rumah/import', 'RumahController@import');
     Route::resource('tipe_rumah', 'TipeRumahController');
     Route::post('tipe_rumah/import', 'TipeRumahController@import');
     Route::resource('pegawai', 'PegawaiController');

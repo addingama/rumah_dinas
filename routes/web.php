@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('rumah', 'RumahController');
     Route::resource('tipe_rumah', 'TipeRumahController');
+    Route::post('tipe_rumah/import', 'TipeRumahController@import');
     Route::resource('pegawai', 'PegawaiController');
     Route::resource('pangkat', 'PangkatController');
 });

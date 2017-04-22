@@ -33,6 +33,6 @@
             return false;
         });
 
-        $('#alertbottomright').fadeToggle(350);
+        $('#alertbottomright').fadeToggle(350).fadeToggle(5000);
     </script>
 @endif

@@ -21,16 +21,15 @@
         <div class="col-md-12">
             <div class="checkbox checkbox-primary pull-left p-t-0">
                 <input id="checkbox-signup" type="checkbox" name="remember">
-                <label for="checkbox-signup"> Remember me </label>
+                <label for="checkbox-signup"> Ingat saya </label>
             </div>
             <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i
-                        class="fa fa-lock m-r-5"></i> Forgot password?</a>
+                        class="fa fa-lock m-r-5"></i> Lupa password?</a>
         </div>
     </div>
     <div class="form-group text-center m-t-20">
         <div class="col-xs-12">
-            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log
-                In
+            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Masuk
             </button>
         </div>
     </div>

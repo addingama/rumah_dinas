@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ url('pangkat') }}">Pangkat</a></li>
-                <li class="active">Edit</li>
+                <li class="active">Ubah</li>
             </ol>
         </div>
         <!-- /.col-lg-12 -->

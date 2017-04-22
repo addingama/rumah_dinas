@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pangkat;
 use Validator;
-use Html;
 use DB;
 
 class PangkatController extends Controller

@@ -27,30 +27,36 @@
                         <tr>
                             <th>Golongan</th>
                             <th>Jabatan</th>
-                            <th>Menu</th>
+                            <th class="text-right">Menu</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>Golongan</th>
                             <th>Jabatan</th>
-                            <th>Menu</th>
+                            <th class="text-right">Menu</th>
                         </tr>
                         </tfoot>
                         <tbody>
+                        @if ($list_pangkat->count() > 0)
                         @foreach($list_pangkat as $pangkat)
                             <tr>
                                 <td>{{ $pangkat->golongan }}</td>
                                 <td>{{ $pangkat->nama }}</td>
-                                <td>
-                                    <a href="{{ url('pangkat/'. $pangkat->id . '/edit') }}" title="Ubah"><i class="ti-pencil"></i> </a>
-                                    <a href="javascript:submit('{{$pangkat->id}}')" Title="Hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" ><i class="ti-trash text-danger"></i></a>
+                                <td class="text-right">
+                                    <a href="{{ url('pangkat/'. $pangkat->id . '/edit') }}" class="btn btn-warning"><i class="ti-pencil"></i> Ubah</a>
+                                    <a href="javascript:submit('{{$pangkat->id}}')" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" ><i class="ti-trash"></i> Hapus</a>
                                     {{ Form::open(array('url' => 'pangkat/' . $pangkat->id, 'class' => 'pull-right', 'id' => 'delete'. $pangkat->id)) }}
                                     {{ Form::hidden('_method', 'DELETE') }}
                                     {{ Form::close() }}
                                 </td>
                             </tr>
                         @endforeach
+                            @else
+                        <tr>
+                            <td colspan="3" class="text-center text-danger">Belum ada data</td>
+                        </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>

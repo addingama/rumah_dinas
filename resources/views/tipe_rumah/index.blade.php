@@ -42,8 +42,7 @@
                             @foreach($list_tipe_rumah as $tipe_rumah)
                                 <tr>
                                     <td>{{ $tipe_rumah->nama }}</td>
-                                    <td class="text-right">Rp.{{ number_format($tipe_rumah->harga_sewa, 0, ',', '.') }}
-                                        ,-
+                                    <td class="text-right">{{ number_format($tipe_rumah->harga_sewa, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">
                                         <a href="{{ url('tipe_rumah/'. $tipe_rumah->id . '/edit') }}"
@@ -60,7 +59,9 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="3" class="text-center text-danger">Belum ada data</td>
+                                <td></td>
+                                <td class="text-center text-danger">Belum ada data</td>
+                                <td></td>
                             </tr>
                         @endif
                         </tbody>
@@ -108,10 +109,11 @@
 @endsection
 
 @section('additional_script')
+    <script src="//cdn.datatables.net/plug-ins/1.10.15/sorting/currency.js"></script>
     <script>
         $('#table_index').DataTable({
-            dom: 'Bfrtip'
-            , buttons: [
+            dom: 'Bfrtip',
+            buttons: [
                 {
                     text: 'Import',
                     className: 'btn btn-info',

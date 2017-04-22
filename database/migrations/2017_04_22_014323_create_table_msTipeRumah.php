@@ -17,6 +17,7 @@ class CreateTableMsTipeRumah extends Migration
             $table->increments('id');
             $table->string('nama')->unique();
             $table->double('harga_sewa');
+            $table->string('terbilang')->nullable();
             $table->timestamps();
         });
     }

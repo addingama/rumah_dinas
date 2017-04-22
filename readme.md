@@ -18,18 +18,26 @@ Untuk melakukan instalasi, pastikan software-software tersebut telah terinstall:
 - Tokenizer PHP Extension
 - XML PHP Extension
 - MySQL
+- Composer
 
 Untuk melakukan pemeriksaan extension, buka terminal / command prompt dan ketik `php -m`
 
 
-## Contributing
+## Instalasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+- Clone repository atau download source code
+- Jalankan perintah `composer install` untuk mengunduh dependensi library
+- Buat database dengan nama `rumah_dinas`, nama database dapat disesuaikan
+- Copy file `.env-example` menjadi `.env`
+- Update data terkait database yang ingin digunakan
+- Jalankan perintah `php artisan key:generate`
+- Jalankan perintah `php artisan migrate`, ini untuk membuat tabel yang dibutuhkan
+- Jalankan perintah `php artisan db:seed`, ini untuk mengisi tabel dengan default data
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Akses
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Untuk mengakses web yang telah dibuat, dapat menggunakan Virtual host yang pointing ke folder public,
+ atau menggunakan command `php artisan serve` dan membuka browser dengan url `localhost:8000`. 
+ 
+ Pastikan anda mengeksekusi commands tersebut melalui terminal dan sedang berada pada root directory project.

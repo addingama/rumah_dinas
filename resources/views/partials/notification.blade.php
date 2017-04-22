@@ -1,19 +1,19 @@
 @if (Session::has('success'))
-    <div id="alertbottomright" class="myadmin-alert alert-success myadmin-alert-bottom-right">
+    <div id="alertbottomright" class="myadmin-alert alert-success myadmin-alert-top-right">
         <a href="#" class="closed">&times;</a>
         <h4>Success!</h4> {{ Session::get('success') }}.
     </div>
 @endif
 
 @if (Session::has('error'))
-    <div id="alertbottomright" class="myadmin-alert alert-danger myadmin-alert-bottom-right">
+    <div id="alertbottomright" class="myadmin-alert alert-danger myadmin-alert-top-right">
         <a href="#" class="closed">&times;</a>
         <h4>Error!</h4> {{ Session::get('error') }}.
     </div>
 @endif
 
 @if (Session::has('info'))
-    <div id="alertbottomright" class="myadmin-alert alert-info myadmin-alert-bottom-right">
+    <div id="alertbottomright" class="myadmin-alert alert-info myadmin-alert-top-right">
         <a href="#" class="closed">&times;</a>
         <h4>Info!</h4> {{ Session::get('info') }}.
     </div>

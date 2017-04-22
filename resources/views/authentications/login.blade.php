@@ -38,23 +38,23 @@
     {{ Form::close() }}
 
     {{ Form::open(['url' => 'recover_password', 'id'=>'recoverform', 'class'=>'form-horizontal']) }}
-        <div class="form-group ">
-            <div class="col-xs-12">
-                <h3>Recover Password</h3>
-                <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
-            </div>
+    <div class="form-group ">
+        <div class="col-xs-12">
+            <h3>Recover Password</h3>
+            <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
         </div>
-        <div class="form-group ">
-            <div class="col-xs-12">
-                <input class="form-control" type="text" required="" placeholder="Email" name="email"></div>
+    </div>
+    <div class="form-group ">
+        <div class="col-xs-12">
+            <input class="form-control" type="text" required="" placeholder="Email" name="email"></div>
+    </div>
+    <div class="form-group text-center m-t-20">
+        <div class="col-xs-12">
+            <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light"
+                    type="submit">
+                Reset
+            </button>
         </div>
-        <div class="form-group text-center m-t-20">
-            <div class="col-xs-12">
-                <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light"
-                        type="submit">
-                    Reset
-                </button>
-            </div>
-        </div>
+    </div>
     {{ Form::close() }}
 @endsection

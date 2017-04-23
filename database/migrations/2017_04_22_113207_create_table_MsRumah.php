@@ -19,6 +19,7 @@ class CreateTableMsRumah extends Migration
             $table->string('kondisi');
             $table->text('keterangan')->nullable();
             $table->integer('tipe_rumah_id');
+            $table->integer('is_available')->default(1);
             $table->timestamps();
         });
     }

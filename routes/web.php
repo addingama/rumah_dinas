@@ -33,4 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('tipe_rumah/import', 'TipeRumahController@import');
     Route::resource('pegawai', 'PegawaiController');
     Route::resource('pangkat', 'PangkatController');
+
+    Route::resource('peminjaman', 'PeminjamanController', ['only' => ['index', 'store']]);
+
 });

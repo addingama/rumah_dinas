@@ -25,6 +25,12 @@
                     <span class="hide-menu">Dashboard</span>
                 </a>
             </li>
+            <li class="{{ active_class(if_uri_pattern(['peminjaman*']), 'active', '') }}">
+                <a href="{{ url('peminjaman') }}" class="waves-effect">
+                    <i class="fa-book fa"></i>
+                    <span class="hide-menu">Peminjaman</span>
+                </a>
+            </li>
             <li class="{{ active_class(if_uri_pattern(['rumah*', 'pegawai*', 'tipe_rumah*', 'pangkat*']), 'active', '') }}">
                 <a href="javascript:void(0)" class="waves-effect">
                     <i class="ti-files fa-fw"></i>

@@ -30,6 +30,7 @@
                             <th>Kondisi Rumah</th>
                             <th class="text-right">Harga Sewa</th>
                             <th>Keterangan</th>
+                            <th>Status</th>
                             <th class="text-right">Menu</th>
                         </tr>
                         </thead>
@@ -40,6 +41,7 @@
                             <th>Kondisi Rumah</th>
                             <th class="text-right">Harga Sewa</th>
                             <th>Keterangan</th>
+                            <th>Status</th>
                             <th class="text-right">Menu</th>
                         </tr>
                         </tfoot>
@@ -53,6 +55,7 @@
                                     <td class="text-right">{{ number_format($rumah->harga_sewa, 0, ',', '.') }}
                                     </td>
                                     <td>{{ $rumah->keterangan }}</td>
+                                    <td>{{ $rumah->is_available == 1 ? 'Tersedia' : 'Terpinjam' }}</td>
                                     <td class="text-center">
                                         <a href="{{ url('rumah/'. $rumah->id . '/edit') }}"><i class="ti-pencil"></i></a>
                                         <a href="javascript:submit('{{$rumah->id}}')"

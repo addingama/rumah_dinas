@@ -70,9 +70,7 @@
     <script>
         $('#table_index').DataTable({
             dom: 'Bfrtip'
-            , buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
+            
         });
 
         function submit(id) {

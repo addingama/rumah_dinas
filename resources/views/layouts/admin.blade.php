@@ -4,8 +4,11 @@
    scratch. This page gets rid of all links and provides the needed markup only.
    -->
 <html lang="en">
+    <head>
+        @include('partials.head')
+        @stack('styles')
+    </head>
 
-    @include('partials.head')
 
     <body class="fix-sidebar">
         @include('partials.preloader')

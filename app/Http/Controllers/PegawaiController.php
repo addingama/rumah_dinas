@@ -108,7 +108,7 @@ class PegawaiController extends Controller
             ]);
 
             $data = compact('list_pangkat', 'pegawai');
-            Debugbar::info($pegawai);
+
         } catch (Exception $e) {
             return back()->with('error', 'Pegawai yang anda pilih tidak dapat ditemukan');
         }

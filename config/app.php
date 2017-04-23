@@ -171,6 +171,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +235,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Active' => HieuLe\Active\Facades\Active::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

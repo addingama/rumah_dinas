@@ -68,7 +68,7 @@ class RumahController extends Controller
 
             $data = compact('list_tipe_rumah', 'rumah');
         } catch (Exception $e) {
-            return back()->with('error', 'umah yang anda pilih tidak dapat ditemukan');
+            return back()->with('error', 'Rumah yang anda pilih tidak dapat ditemukan');
         }
         return view('rumah.edit')->with($data);
 

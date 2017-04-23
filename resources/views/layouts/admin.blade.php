@@ -35,6 +35,7 @@
         @include('partials.scripts')
         @include('partials.notification')
         @yield('additional_script')
+        @stack('scripts')
     </body>
 
 </html>

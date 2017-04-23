@@ -70,7 +70,7 @@
     <script>
         $('#table_index').DataTable({
             dom: 'Bfrtip'
-            
+
         });
 
         function submit(id) {

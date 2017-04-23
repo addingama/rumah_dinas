@@ -7,3 +7,7 @@
 Homestead.json
 Homestead.yaml
 .env
+.DS_Store
+public/.DS_Store
+resources/.DS_Store
+resources/template

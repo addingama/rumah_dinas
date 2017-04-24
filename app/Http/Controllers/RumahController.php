@@ -12,12 +12,34 @@ use Illuminate\Support\Facades\App;
 
 class RumahController extends Controller
 {
-    public function index() {
-        $list_rumah = Rumah::select('msRumah.*', 'msTipeRumah.nama as tipe_rumah', 'msTipeRumah.harga_sewa')
-            ->leftJoin('msTipeRumah', 'msRumah.tipe_rumah_id', '=', 'msTipeRumah.id')
-            ->get();
+    public function index(Request $request) {
+        $status = $request->get('status');
+        $judul = "";
+        if ($status == null) $status = 'all';
 
-        $data = compact('list_rumah');
+
+        switch ($status) {
+            case 'not_available':
+                $list_rumah = Rumah::notAvailable()->select('msRumah.*', 'msTipeRumah.nama as tipe_rumah', 'msTipeRumah.harga_sewa')
+                    ->leftJoin('msTipeRumah', 'msRumah.tipe_rumah_id', '=', 'msTipeRumah.id')
+                    ->get();
+                $judul = "Terpinjam";
+                break;
+            case 'available':
+                $list_rumah = Rumah::available()->select('msRumah.*', 'msTipeRumah.nama as tipe_rumah', 'msTipeRumah.harga_sewa')
+                    ->leftJoin('msTipeRumah', 'msRumah.tipe_rumah_id', '=', 'msTipeRumah.id')
+                    ->get();
+                $judul = "Tersedia";
+                break;
+            default:
+                $list_rumah = Rumah::select('msRumah.*', 'msTipeRumah.nama as tipe_rumah', 'msTipeRumah.harga_sewa')
+                    ->leftJoin('msTipeRumah', 'msRumah.tipe_rumah_id', '=', 'msTipeRumah.id')
+                    ->get();
+
+        }
+
+
+        $data = compact('list_rumah', 'judul');
         return view('rumah.index')->with($data);
     }
 

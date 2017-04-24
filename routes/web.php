@@ -35,5 +35,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('pangkat', 'PangkatController');
 
     Route::resource('peminjaman', 'PeminjamanController');
+    Route::get('peminjaman/{id}/sip', 'PeminjamanController@sip');
 
 });

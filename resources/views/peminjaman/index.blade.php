@@ -25,9 +25,9 @@
                     <table id="table_index" class="display nowrap color-table dark-table" cellspacing="0" width="100%">
                         <thead>
                         <tr>
+                            <th>NIP</th>
                             <th>Peminjam</th>
                             <th>Rumah</th>
-                            <th>NIP</th>
                             <th>Mulai</th>
                             <th>Selesai</th>
                             <th class="text-right">Menu</th>
@@ -35,9 +35,9 @@
                         </thead>
                         <tfoot>
                         <tr>
+                            <th>NIP</th>
                             <th>Peminjam</th>
                             <th>Rumah</th>
-                            <th>NIP</th>
                             <th>Mulai</th>
                             <th>Selesai</th>
                             <th class="text-right">Menu</th>
@@ -47,14 +47,15 @@
                         @if ($list_peminjaman->count() > 0)
                             @foreach($list_peminjaman as $peminjaman)
                                 <tr>
+                                    <td>{{ $peminjaman->pegawai->nip }}</td>
                                     <td>{{ $peminjaman->pegawai->nama }}</td>
                                     <td>{{ $peminjaman->rumah->alamat }}</td>
-                                    <td>{{ $peminjaman->pegawai->nip }}</td>
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $peminjaman->start)->format('j F Y') }}</td>
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $peminjaman->end)->format('j F Y') }}</td>
                                     <td class="text-right">
-                                        <a href="{{ url('peminjaman/'. $peminjaman->id . '/edit') }}" class="btn btn-warning"><i class="ti-pencil"></i> Ubah</a>
-                                        <a href="javascript:submit('{{$peminjaman->id}}')" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" ><i class="ti-trash"></i> Hapus</a>
+                                        <a href="{{ url('peminjaman/'. $peminjaman->id ) }}"><i class="fa fa-laptop text-warning"></i></a>
+                                        <a href="{{ url('peminjaman/'. $peminjaman->id . '/edit') }}"><i class="ti-pencil"></i></a>
+                                        <a href="javascript:submit('{{$peminjaman->id}}')" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" ><i class="ti-trash text-danger"></i></a>
                                         {{ Form::open(array('url' => 'peminjaman/' . $peminjaman->id, 'class' => 'pull-right', 'id' => 'delete'. $peminjaman->id)) }}
                                         {{ Form::hidden('_method', 'DELETE') }}
                                         {{ Form::close() }}

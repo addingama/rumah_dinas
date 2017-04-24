@@ -17,7 +17,7 @@ use Validator;
 class PeminjamanController extends Controller
 {
     public function index() {
-        $list_peminjaman = Peminjaman::with('pegawai', 'rumah.tipe')->get();
+        $list_peminjaman = Peminjaman::notReturned()->with('pegawai', 'rumah.tipe')->get();
 
         $data = compact('list_peminjaman');
         return view('peminjaman.index')->with($data);
@@ -98,11 +98,11 @@ class PeminjamanController extends Controller
                 // simpan data peminjaman
                 $request->merge([
                     'pegawai_id' => $pegawai->id,
-                    'start' => Carbon::createFromFormat('d/m/Y', $request->get('start'))->format('Y-m-d'),
-                    'end' => Carbon::createFromFormat('d/m/Y', $request->get('end'))->format('Y-m-d'),
+                    'start' => Carbon::createFromFormat('m/d/Y', $request->get('start'))->format('Y-m-d'),
+                    'end' => Carbon::createFromFormat('m/d/Y', $request->get('end'))->format('Y-m-d'),
                     'harga_sewa' => $rumah->tipe->harga_sewa
                 ]);
-                Peminjaman::create($request->all());
+                $peminjaman = Peminjaman::create($request->all());
 
                 $rumah->update(['is_available' => 0]);
 
@@ -112,7 +112,7 @@ class PeminjamanController extends Controller
             return back()->with('error', 'Peminjaman gagal ditambahkan');
         }
         DB::commit();
-        return redirect('peminjaman')->with('success', 'Peminjaman berhasil ditambahkan');
+        return redirect('peminjaman/'.$peminjaman->id)->with('success', 'Peminjaman berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -143,8 +143,8 @@ class PeminjamanController extends Controller
             $peminjaman->pangkat_id = $pegawai->pangkat_id;
             $peminjaman->jabatan = $pegawai->jabatan->nama;
             $peminjaman->skpd = $pegawai->skpd->nama;
-            $peminjaman->start = Carbon::createFromFormat('Y-m-d', $peminjaman->start)->format('d/m/Y');
-            $peminjaman->end = Carbon::createFromFormat('Y-m-d', $peminjaman->end)->format('d/m/Y');
+            $peminjaman->start = Carbon::createFromFormat('Y-m-d', $peminjaman->start)->format('m/d/Y');
+            $peminjaman->end = Carbon::createFromFormat('Y-m-d', $peminjaman->end)->format('m/d/Y');
 
             $data = compact('list_pangkat', 'list_rumah', 'peminjaman');
         } catch (Exception $e) {
@@ -216,8 +216,8 @@ class PeminjamanController extends Controller
                 // simpan data peminjaman
                 $request->merge([
                     'pegawai_id' => $pegawai->id,
-                    'start' => Carbon::createFromFormat('d/m/Y', $request->get('start'))->format('Y-m-d'),
-                    'end' => Carbon::createFromFormat('d/m/Y', $request->get('end'))->format('Y-m-d'),
+                    'start' => Carbon::createFromFormat('m/d/Y', $request->get('start'))->format('Y-m-d'),
+                    'end' => Carbon::createFromFormat('m/d/Y', $request->get('end'))->format('Y-m-d'),
                     'harga_sewa' => $rumah->tipe->harga_sewa
                 ]);
 
@@ -231,7 +231,7 @@ class PeminjamanController extends Controller
             return back()->with('error', 'Peminjaman gagal diubah');
         }
         DB::commit();
-        return redirect('peminjaman')->with('success', 'Peminjaman berhasil diubah');
+        return redirect('peminjaman/'.$id)->with('success', 'Peminjaman berhasil diubah');
     }
 
     public function destroy($id) {
@@ -256,5 +256,38 @@ class PeminjamanController extends Controller
         }
         DB::commit();
         return back()->with('success', 'Data peminjaman berhasil di hapus');
+    }
+
+    public function show($id) {
+        try {
+            $peminjaman = Peminjaman::with('pegawai.jabatan', 'pegawai.skpd', 'rumah.tipe')->findOrFail($id);
+            $start_date = Carbon::createFromFormat('Y-m-d', $peminjaman->start);
+            $end_date = Carbon::createFromFormat('Y-m-d', $peminjaman->end);
+            $diff_in_days = $end_date->diffInDays($start_date);
+            $diff_in_month = $end_date->diffInMonths($start_date);
+
+            $sisa_hari = $diff_in_days % 30;
+            if ($sisa_hari > 0) {
+                $diff_in_month = $diff_in_month + 1;
+            }
+
+            $perkiraan_total_sewa = $peminjaman->harga_sewa * $diff_in_month;
+
+            $data = compact('peminjaman', 'start_date', 'end_date', 'diff_in_month', 'diff_in_days', 'perkiraan_total_sewa');
+        } catch(Exception $e) {
+            return back()->with('error', 'Data peminjaman yang anda pilih tidak dapat ditemukan');
+        }
+        return view('peminjaman.show')->with($data);
+    }
+
+    public function sip($id) {
+        try {
+            $peminjaman = Peminjaman::with('pegawai.jabatan', 'pegawai.skpd', 'rumah.tipe')->findOrFail($id);
+
+            $data = compact('peminjaman');
+        } catch(Exception $e) {
+            return back()->with('error', 'Data peminjaman yang anda pilih tidak dapat ditemukan');
+        }
+        return view('prints.sip')->with($data);
     }
 }

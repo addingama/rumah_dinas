@@ -19,7 +19,7 @@
         <div class="col-sm-12">
             <div class="white-box">
                 <a href="{{ url('rumah/create') }}" class="btn btn-info float-right">Tambah</a>
-                <h3 class="box-title m-b-0">Daftar Rumah</h3>
+                <h3 class="box-title m-b-0">Daftar Rumah {{ $judul }}</h3>
                 <p class="text-muted m-b-30">Data rumah dinas BPKAD</p>
                 <div class="table-responsive">
                     <table id="table_index" class="display nowrap color-table dark-table" cellspacing="0" width="100%">
@@ -57,7 +57,7 @@
                                     <td>{{ $rumah->keterangan }}</td>
                                     <td>{{ $rumah->is_available == 1 ? 'Tersedia' : 'Terpinjam' }}</td>
                                     <td class="text-center">
-                                        <a href="{{ url('rumah/'. $rumah->id . '/edit') }}"><i class="ti-pencil"></i></a>
+                                        <a href="{{ url('rumah/'. $rumah->id . '/edit') }}" data-tooltips="Ubah"><i class="ti-pencil"></i></a>
                                         <a href="javascript:submit('{{$rumah->id}}')"
                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
                                                     class="ti-trash text-danger"></i></a>

@@ -22,6 +22,7 @@ class CreateTableTrPeminjaman extends Migration
             $table->date('end');
             $table->string('dasar_pelaksanaan_tarif_sewa');
             $table->string('tempat_pembayaran');
+            $table->integer('is_returned')->default(0);
             $table->timestamps();
         });
     }

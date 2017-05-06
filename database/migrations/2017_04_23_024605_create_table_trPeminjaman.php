@@ -18,6 +18,7 @@ class CreateTableTrPeminjaman extends Migration
             $table->integer('pegawai_id');
             $table->integer('rumah_id');
             $table->double('harga_sewa');
+            $table->string('terbilang');
             $table->date('start');
             $table->date('end');
             $table->string('dasar_pelaksanaan_tarif_sewa');

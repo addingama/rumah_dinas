@@ -86,7 +86,8 @@ class PeminjamanController extends Controller
                 // masukkan data jabatan dan skpd id ke dalam array request
                 $request->merge([
                     'skpd_id' => $skpd->id,
-                    'jabatan_id' => $jabatan->id
+                    'jabatan_id' => $jabatan->id,
+                    'terbilang' => $rumah->tipe->terbilang
                 ]);
 
                 if ($pegawai == null) {
@@ -199,7 +200,8 @@ class PeminjamanController extends Controller
                 // masukkan data jabatan dan skpd id ke dalam array request
                 $request->merge([
                     'skpd_id' => $skpd->id,
-                    'jabatan_id' => $jabatan->id
+                    'jabatan_id' => $jabatan->id,
+                    'terbilang' => $rumah->tipe->terbilang
                 ]);
 
                 if ($pegawai == null) {

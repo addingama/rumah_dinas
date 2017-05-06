@@ -79,7 +79,10 @@
 @section('additional_script')
     <script>
         $('#table_index').DataTable({
-            dom: 'Bfrtip'
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
 
         });
 

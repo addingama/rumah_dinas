@@ -1,6 +1,7 @@
 @extends('layouts.print')
 
 @section('additional_head')
+    <title>Cetak SIP</title>
 <style>
     .header-icon {
         height: 150px;

@@ -259,4 +259,8 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.print();
+    </script>
 @endsection

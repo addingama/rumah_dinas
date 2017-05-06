@@ -5,7 +5,7 @@
     <link href="/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
     @yield('additional_head')
 </head>
-<body style="width: 960px; border: 1px solid dimgray; padding: 15px;">
+<body style="width: 960px; padding: 15px;">
     @yield('content')
 </body>
 </html>

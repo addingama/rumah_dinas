@@ -126,12 +126,14 @@ class TipeRumahController extends Controller
                                 if ($tipe_rumah == null) {
                                     TipeRumah::create([
                                         'nama' => $value['tipe'],
-                                        'harga_sewa' => $value['harga_sewa']
+                                        'harga_sewa' => $value['harga_sewa'],
+                                        'terbilang' => $value['terbilang']
                                     ]);
                                 } else {
                                     $tipe_rumah->update([
                                         'nama' => $value['tipe'],
-                                        'harga_sewa' => $value['harga_sewa']
+                                        'harga_sewa' => $value['harga_sewa'],
+                                        'terbilang' => $value['terbilang']
                                     ]);
                                 }
                             }

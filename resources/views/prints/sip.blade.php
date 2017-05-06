@@ -42,6 +42,14 @@
     .content-table td {
         padding: 5px;
     }
+
+    .ketentuan li {
+        line-height:30px;
+    }
+
+    @media print {
+        footer {page-break-after: always;}
+    }
 </style>
 @endsection
 
@@ -87,61 +95,61 @@
                             <td>1.</td>
                             <td>Nama</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>Evy Susyarlin Marakarma, S.Sos</td>
+                            <td>{{ $peminjaman->pegawai->nama }}</td>
                         </tr>
                         <tr>
                             <td>2.</td>
                             <td>Nomor Induk Pegawai (NIP)</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>19730312 199303 2 007</td>
+                            <td>{{ $peminjaman->pegawai->nip }}</td>
                         </tr>
                         <tr>
                             <td>3.</td>
                             <td>Jabatan / Pekerjaan</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>Kasubbag TU dan Kepegawaian pada Sekretariat DPRD Provinsi NTB</td>
+                            <td>{{ $peminjaman->pegawai->jabatan->nama }}</td>
                         </tr>
                         <tr>
                             <td>4.</td>
-                            <td>Jabatan / Pekerjaan</td>
+                            <td>Alamat Rumah</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>Jl. Udayana Eks Komplek DPRD No. 26 Mataram</td>
+                            <td>{{ $peminjaman->rumah->alamat }}</td>
                         </tr>
                         <tr>
                             <td>5.</td>
                             <td>Golongan Rumah/Type</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>II/70</td>
+                            <td>{{ $peminjaman->rumah->tipe->nama }}</td>
                         </tr>
                         <tr>
                             <td>6.</td>
                             <td>Sewa Tiap Bulan</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>Dibayar pada Bendahara Penerimaan BPKAD Provinsi NTB</td>
+                            <td>{{ $peminjaman->tempat_pembayaran }}</td>
                         </tr>
                         <tr>
                             <td>7.</td>
                             <td>Dasar Pelaksanaan Tarif Sewa</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>Pergub No. 6 Tahun  2014 Tanggal 11 Maret 2014</td>
+                            <td>{{ $peminjaman->dasar_pelaksanaan_tarif_sewa }}</td>
                         </tr>
                         <tr>
                             <td>8.</td>
                             <td>SIP Berlaku Tanggal</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>03-01-2017 s/d 31-12-2017</td>
+                            <td>{{ formatDate($peminjaman->start, 'Y-m-d', 'd-m-Y') }} s/d {{ formatDate($peminjaman->end, 'Y-m-d', 'd-m-Y') }}</td>
                         </tr>
                         <tr>
                             <td>9.</td>
                             <td>Tarif Sewa Per Bulan</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>Rp. 357.405,- (Tiga Ratus Lima Puluh Tujuh Ribu Empat Ratus Lima Rupiah)</td>
+                            <td>Rp. {{ number_format($peminjaman->harga_sewa, 0, ',', '.') }},- (Tiga Ratus Lima Puluh Tujuh Ribu Empat Ratus Lima Rupiah)</td>
                         </tr>
                         <tr>
                             <td>10.</td>
                             <td>Tempat Pembayaran</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>Bendahara Penerimaan pada Badan Pengelolaan Keuangan dan Aset Daerah Provinsi NTB</td>
+                            <td>{{ $peminjaman->tempat_pembayaran }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -150,11 +158,105 @@
                 <br>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <br><br>
+                <div class="img-thumbnail" style="text-align: center; width:120px; height: 150px; display: flex;
+    align-items: center;
+    justify-content: center;">
+                    PHOTO PEMEGANG SIP
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <p style="text-align: center;">
+                    Mataram, {{ Carbon\Carbon::now()->format('j F Y') }}<br><br>
+                    Kepala Badan Pengelolaan Keuangan dan Aset Daerah<br>
+                    Provinsi Nusa Tenggara Barat<br><br><br><br><br><br>
+
+                    <span style="font-weight: bold; text-decoration: underline;">Drs. H. SUPRAN, M.M</span><br>
+                    Nip. 19591231 199003 1 077
+                </p>
+            </div>
+        </div>
+        <footer>
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="margin-top: 120px;">
+                        Lembar 1 untuk Pemegang SIP<br>
+                        Lembar 2 untuk Kepala BPKAD Prov.NTB
+                        <br>
+                        <br>
+                        <br>
+                        KETENTUAN MENEMPATI RUMAH DINAS
+                        TERTERA DI BALIK HALAMAN INI
+                    </p>
+                </div>
 
             </div>
-            <div class="off"
+        </footer>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 style="text-align: center;">KETENTUAN MENEMPATI RUMAH DINAS<br>
+                    MILIK PEMERINTAH PROVINSI NUSA TENGGARA BARAT</h4>
+                <br><br>
+                <ol class="ketentuan">
+                    <li>Pejabat/PNS yang masih aktif mengabdi pada Pemerintah Provinsi.</li>
+                    <li>Memiliki Surat Izin Penghunian (SIP) dari Gubernur Nusa Tenggara Barat.</li>
+                    <li>Suami dan istri yang masing-masing berstatus sebagai Pegawai Negeri, hanya dapat menghuni 1 (satu) Rumah Dinas.</li>
+                    <li>Setiap Pemegang SIP, wajib menempati rumah dinas selambat-lambatnya dalam jangka waktu 30 hari sejak SIP diterima.</li>
+                    <li>SIP berakhir apabila
+                        <ul>
+                            <li>Telah habis masa berlaku dan tidak dilakukan perpanjangan SIP.</li>
+                            <li>Penghuni tidak lagi bertugas pada Pemerintah Provinsi NTB.</li>
+                            <li>Penggunaan rumah dinas tidak sesuai peruntukannya.</li>
+                            <li>Pemegang SIP diberhentikan dengan tidak hormat sebagai Pegawai Negeri.</li>
+                            <li>Penghuni meninggal dunia.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Penghuni rumah dinas berkewajiban :
+                        <ul>
+                            <li>Membayar sewa sesuai dengan Peraturan Gubernur No. 6 Tahun 2014 tentang Perubahan Tarif Retribusi Jasa Usaha.</li>
+                            <li>Melakukan pembayaran sewa setiap bulan melalui Bendahara Gaji SKPD kepada Bendahara Penerima BPKAD Provinsi NTB paling lambat setiap tanggal 25 bulan berjalan.</li>
+                            <li>Membayar denda keterlambatan sewa rumah sebesar 2 % (dua persen) setiap bulan sesuai Perda No. 3 Tahun 2011.</li>
+                            <li>Memelihara rumah dan memanfaatkan sesuai dengan fungsinya.</li>
+                            <li>Menyerahkan Kembali apabila Rumah Dinas Tersebut Sewaktu waktu diperlukan oleh Pemerintah Provinsi NTB untuk Menunjang Tupoksi yang strategis.</li>
+                            <li>Mengembalikan dalam keadaan baik kepada Pemerintah Provinsi NTB apabila rumah tidak ditempati lagi.</li>
+                            <li>Bagi PNS yang sudah memasuki masa pensiun berkewajiban mengembalikan rumah yang ditempati paling lambat 1 (satu) bulan setelah berakhirnya penghunian.</li>
+                            <li>Membayar segala pembayaran terkait rumah dinas (PBB, listrik, air dan sejenisnya).</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Penghuni Rumah dinas dilarang :
+                        <ul>
+                            <li>Menyerahkan sebagaian atau seluruh rumah kepada pihak lain.</li>
+                            <li>Mengubah sebagian atau seluruh bentuk rumah.</li>
+                            <li>Memanfaatkan rumah tidak sesuai dengan fungsinya.</li>
+                            <li>Menyewakan rumah kepada orang lain.</li>
+                            <li>Memusnahkan/menghilangkan rumah yang ditempati.</li>
+                            <li>Meminta ganti rugi dalam bentuk apapun kepada Pemerintah Provinsi NTB maupun kepada Penghuni Baru Pemegang SIP, apabila penghuni lama tidak berhak lagi menempati Rumah Dinas.</li>
+                        </ul>
+                    </li>
+                    <li>SIP berlaku 1 (satu) tahun dan dapat diperpanjang kembali selesai masa berlaku.</li>
+                    <li>Bagi Pemegang SIP yang sudah tidak menghuni rumah dinas agar segera mengembalikan SIP beserta kunci rumah dinas dengan melaporkan kepada Sekda Provinsi NTB Cq. Kepala BPKAD Provinsi NTB.</li>
+                    <li>Dalam rangka penertiban dan pengamanan rumah dinas, diharapkan memberikan informasi jika ada rumah dinas disekitar yang tidak sesuai dengan peruntukannya.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-7"></div>
+            <div class="col-md-5">
+                <p style="text-align: center;">
+                    Setuju dengan ketentuan tersebut diatas<br>
+                    Penghuni Rumah / Pemegang SIP<br><br><br><br><br>
+
+                    <span style="text-decoration: underline;">{{ $peminjaman->pegawai->nama }}</span><br>
+                    Nip. {{ $peminjaman->pegawai->nip }}
+                </p>
+            </div>
         </div>
     </div>
 @endsection

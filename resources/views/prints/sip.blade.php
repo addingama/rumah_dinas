@@ -144,7 +144,7 @@
                             <td>9.</td>
                             <td>Tarif Sewa Per Bulan</td>
                             <td>&nbsp;:&nbsp;</td>
-                            <td>Rp. {{ number_format($peminjaman->harga_sewa, 0, ',', '.') }},- (Tiga Ratus Lima Puluh Tujuh Ribu Empat Ratus Lima Rupiah)</td>
+                            <td>Rp. {{ number_format($peminjaman->harga_sewa, 0, ',', '.') }},- ({{ $peminjaman->terbilang }})</td>
                         </tr>
                         <tr>
                             <td>10.</td>

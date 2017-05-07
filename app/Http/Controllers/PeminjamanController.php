@@ -125,7 +125,11 @@ class PeminjamanController extends Controller
             $list_jabatan = Jabatan::select('nama')->orderBy('nama', 'asc')->get()->pluck('nama')->all();
             $list_skpd = SKPD::orderBy('nama', 'ASC')
                 ->get()->pluck('nama', 'id')->all();
-            $list_rumah = Rumah::where('is_available', '=', 1)->orderBy('alamat', 'ASC')
+            $list_rumah = Rumah::where('is_available', '=', 1)
+                ->orWhere(function($query) use ($peminjaman) {
+                    $query->where('is_available', '=', 0)->where('id', '=', $peminjaman->rumah_id);
+                })
+                ->orderBy('alamat', 'ASC')
                 ->get()->pluck('alamat', 'id')->all();
 
             JavaScript::put([
@@ -200,8 +204,7 @@ class PeminjamanController extends Controller
                 // masukkan data jabatan dan skpd id ke dalam array request
                 $request->merge([
                     'skpd_id' => $skpd->id,
-                    'jabatan_id' => $jabatan->id,
-                    'terbilang' => $rumah->tipe->terbilang
+                    'jabatan_id' => $jabatan->id
                 ]);
 
                 if ($pegawai == null) {
@@ -220,7 +223,8 @@ class PeminjamanController extends Controller
                     'pegawai_id' => $pegawai->id,
                     'start' => Carbon::createFromFormat('m/d/Y', $request->get('start'))->format('Y-m-d'),
                     'end' => Carbon::createFromFormat('m/d/Y', $request->get('end'))->format('Y-m-d'),
-                    'harga_sewa' => $rumah->tipe->harga_sewa
+                    'harga_sewa' => $rumah->tipe->harga_sewa,
+                    'terbilang' => $rumah->tipe->terbilang
                 ]);
 
                 $peminjaman->update($request->all());

@@ -11,7 +11,7 @@
                     <img src="/plugins/images/eliteadmin-logo.png" alt="home" />
                 </b>
                 <span class="hidden-xs">
-                    <strong>BPKAD</strong>
+                    <strong>{{ Config::get('app.name') }}</strong>
                 </span>
             </a>
         </div>

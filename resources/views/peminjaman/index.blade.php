@@ -54,7 +54,7 @@
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $peminjaman->end)->format('j F Y') }}</td>
                                     <td class="text-right">
                                         <a href="{{ url('peminjaman/'. $peminjaman->id ) }}"><i class="fa fa-laptop text-warning"></i></a>
-                                        <a href="{{ url('peminjaman/'. $peminjaman->id .'/return' ) }}"><i class="fa fa-undo text-success"></i></a>
+                                        <a href="{{ url('peminjaman/'. $peminjaman->id .'/return' ) }}" onclick="return confirm('Apakah Anda yakin ingin mengembalikan rumah ini?')"><i class="fa fa-undo text-success"></i></a>
                                         <a href="{{ url('peminjaman/'. $peminjaman->id . '/edit') }}"><i class="ti-pencil"></i></a>
                                         <a href="javascript:submit('{{$peminjaman->id}}')" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" ><i class="ti-trash text-danger"></i></a>
                                         {{ Form::open(array('url' => 'peminjaman/' . $peminjaman->id, 'class' => 'pull-right', 'id' => 'delete'. $peminjaman->id)) }}

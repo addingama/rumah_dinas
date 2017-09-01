@@ -296,4 +296,21 @@ class PeminjamanController extends Controller
         }
         return view('prints.sip')->with($data);
     }
+
+    public function returning($id) {
+        DB::beginTransaction();
+        try {
+            $peminjaman = Peminjaman::where('id', '=', $id)->first();
+            $peminjaman->update(['is_returned' => 1]);
+            $rumah = $peminjaman->rumah;
+            $rumah->update(['is_available' => 1]);
+
+
+        } catch(Exception $e) {
+            DB::rollback();
+            return back()->with('error', 'Data peminjaman yang anda pilih tidak dapat ditemukan');
+        }
+        DB::commit();
+        return back()->with('success', 'Data peminjaman berhasil di hapus');
+    }
 }

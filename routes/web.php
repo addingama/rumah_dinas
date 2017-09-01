@@ -31,10 +31,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('rumah/import', 'RumahController@import');
     Route::resource('tipe_rumah', 'TipeRumahController');
     Route::post('tipe_rumah/import', 'TipeRumahController@import');
+    Route::post('rumah/{rumah_id}/gambar', 'RumahController@upload_image');
+    Route::delete('rumah/{rumah_id}/gambar/{image_id}/delete', 'RumahController@delete_image');
     Route::resource('pegawai', 'PegawaiController');
     Route::resource('pangkat', 'PangkatController');
 
     Route::resource('peminjaman', 'PeminjamanController');
     Route::get('peminjaman/{id}/sip', 'PeminjamanController@sip');
+    Route::get('peminjaman/{id}/return', 'PeminjamanController@returning');
 
 });

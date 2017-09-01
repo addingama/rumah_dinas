@@ -47,8 +47,8 @@
                         @if ($list_peminjaman->count() > 0)
                             @foreach($list_peminjaman as $peminjaman)
                                 <tr>
-                                    <td>{{ $peminjaman->pegawai->nip }}</td>
-                                    <td>{{ $peminjaman->pegawai->nama }}</td>
+                                    <td>{{ $peminjaman->pegawai != null ? $peminjaman->pegawai->nip : '-' }}</td>
+                                    <td>{{ $peminjaman->pegawai != null ? $peminjaman->pegawai->nama : '-' }}</td>
                                     <td>{{ $peminjaman->rumah->alamat }}</td>
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $peminjaman->start)->format('j F Y') }}</td>
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $peminjaman->end)->format('j F Y') }}</td>
